@@ -1,6 +1,6 @@
 #define BOOST_TEST_MODULE Geometry::SweepLine
 
-#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
 
 #include <iostream>
 
