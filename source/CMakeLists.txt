@@ -1,6 +1,7 @@
-find_package(Boost QUIET)
+find_package(Boost REQUIRED COMPONENTS unit_test_framework)
 if(Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIR})
+    add_definitions(-DBOOST_TEST_DYN_LINK)
 endif()
 
 find_package(Eigen3 QUIET)
