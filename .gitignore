@@ -1,0 +1,12 @@
+# Ignore all
+*
+
+# Unignore all files and dirs
+!*.*
+!*/
+
+# Ignore object files
+*.o
+
+# Ignore build directory
+build
