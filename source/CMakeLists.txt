@@ -18,6 +18,8 @@ set(SOURCES
 )
 
 set(HEADERS
+    SortedSequence.h
+)
 
 )
 
