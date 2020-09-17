@@ -4,8 +4,16 @@ if(Boost_FOUND)
     add_definitions(-DBOOST_TEST_DYN_LINK)
 endif()
 
-find_package(Eigen3 REQUIRED NO_MODULE)
-include_directories(${Eigen3_INCLUDE_DIRS})
+if(APPLE)
+    set(EIGEN_PATH /usr/local/include/eigen3)
+    find_package(Eigen3 REQUIRED NO_MODULE)
+    include_directories(${EIGEN_PATH})
+endif()
+
+if(UNIX AND NOT APPLE)
+    find_package(Eigen3 REQUIRED NO_MODULE)
+    include_directories(${Eigen3_INCLUDE_DIRS})
+endif()
 
 set(SOURCES 
     Segment.cpp
