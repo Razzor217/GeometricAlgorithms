@@ -14,5 +14,10 @@ namespace geometry
         {
             return this->insert(std::upper_bound(this->begin(), this->end(), value, pred), value);
         }
+
+        typename std::vector<T>::iterator insert_sorted(const T& value)
+        {
+            return this->insert(std::upper_bound(this->begin(), this->end(), value), value);
+        }
     };
 }
