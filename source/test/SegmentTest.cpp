@@ -1,7 +1,7 @@
-#define BOOST_TEST_MODULE Geometry::SweepLine
+#define BOOST_TEST_MODULE Geometry::Segment
 
 #include <boost/test/included/unit_test.hpp>
-#include "../SweepLine.h"
+#include "../Segment.h"
 
 #include <iostream>
 

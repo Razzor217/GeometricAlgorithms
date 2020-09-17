@@ -1,7 +1,7 @@
-#define BOOST_TEST_MODULE Geometry::SweepLine
+#define BOOST_TEST_MODULE Geometry::SortedSequence
 
 #include <boost/test/included/unit_test.hpp>
-#include "../SweepLine.h"
+#include "../SortedSequence.h"
 
 #include <iostream>
 
