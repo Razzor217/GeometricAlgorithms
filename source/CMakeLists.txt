@@ -15,9 +15,11 @@ set(LIBS
 
 set(SOURCES 
     ./test/SweepLineTest.cpp
+    Segment.cpp
 )
 
 set(HEADERS
+    Segment.h
     SortedSequence.h
 )
 
