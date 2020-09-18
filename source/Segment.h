@@ -13,7 +13,7 @@ namespace geometry
 
         Segment(const Eigen::Vector2f& a, const Eigen::Vector2f& b);
 
-        bool intersect(const Segment& other, Eigen::Vector2f& intersection);
+        bool intersect(const Segment& other, Eigen::Vector2f& intersection) const;
 
         void setStart(const Eigen::Vector2f& start);
 

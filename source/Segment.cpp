@@ -27,7 +27,7 @@ Segment::Segment(const Eigen::Vector2f& a, const Eigen::Vector2f& b)
 }
 
 // todo: check numerators / denominator
-bool Segment::intersect(const Segment& other, Eigen::Vector2f& intersection)
+bool Segment::intersect(const Segment& other, Eigen::Vector2f& intersection) const
 {
     float den = (start(0) - finish(0)) * (other.getStart()(1) - other.getFinish()(1)) 
                 - (start(1) - finish(1)) * (other.getStart()(0) - other.getFinish()(0));

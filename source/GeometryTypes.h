@@ -1,6 +1,8 @@
 #pragma once
 
 #include <vector>
+#include <optional>
+
 #include "Segment.h"
 
 namespace geometry
@@ -14,28 +16,33 @@ namespace geometry
 
     struct Event
     {
-        Event(const float& y, const EventType& type, const Segment& segment) 
-         : y(y), type(type), segment(segment)
+        Event(
+            const float& y, 
+            const EventType& type, 
+            const Segment& s, 
+            const std::optional<Segment>& t = std::nullopt) 
+         : y(y), type(type), s(s), t(t)
         {
             
         }
 
         float y;
         EventType type;
-        Segment segment;
+        Segment s;
+        std::optional<Segment> t;
     };
 
     struct Intersection
     {
-        Intersection(const Eigen::Vector2f& intersection, const Segment& first, const Segment& second) 
-         : intersection(intersection), first(first), second(second)
+        Intersection(const Eigen::Vector2f& intersection, const Segment& s, const Segment& t) 
+         : intersection(intersection), s(s), t(t)
         {
             
         }
 
         Eigen::Vector2f intersection;
-        Segment first;
-        Segment second;
+        Segment s;
+        Segment t;
     };
 
     using IntersectionSeq = std::vector<Intersection>;
@@ -49,12 +56,8 @@ namespace geometry
         }
     };
 
-    class CompareSegmentAsc
+    bool compareSegmentAsc(const Segment& a, const Segment& b)
     {
-    public:
-        bool operator()(const Segment& a, const Segment& b)
-        {
-            return a.getStart()(0) < b.getStart()(0);
-        }
-    };
+        return a.getStart()(0) < b.getStart()(0);
+    }
 }
