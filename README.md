@@ -23,6 +23,15 @@ cmake ..
 make
 ```
 
+The documentation for this project is built using [Doxygen](https://www.doxygen.nl/). 
+You can build the documentation by running `make doc` from the build directory:
+
+```
+cd build
+make doc
+```
+You can access the documentation from `<build-DIR>/doc/html/index.html`.
+
 You can run the provided test modules by running `ctest` in the build directory:
 
 ```
