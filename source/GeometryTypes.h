@@ -55,9 +55,4 @@ namespace geometry
             return a.y < b.y;
         }
     };
-
-    bool compareSegmentAsc(const Segment& a, const Segment& b)
-    {
-        return a.getStart()(0) < b.getStart()(0);
-    }
 }

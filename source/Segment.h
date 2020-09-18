@@ -23,6 +23,10 @@ namespace geometry
 
         Eigen::Vector2f getFinish() const;
 
+        friend bool operator==(const Segment& a, const Segment& b);
+
+        friend bool operator<(const Segment& a, const Segment& b);
+
     private:
         Eigen::Vector2f start;
         Eigen::Vector2f finish;

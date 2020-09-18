@@ -48,7 +48,7 @@ void handleStartEvent(
     SegmentSeq& sequence, 
     IntersectionSeq& intersections)
 {
-    auto it = sequence.insert_sorted(segment, compareSegmentAsc);
+    auto it = sequence.insert_sorted(segment);
     
     findNewEvent(y, *(std::prev(it)), *it, queue);
     findNewEvent(y, *it, *(std::next(it)), queue);
@@ -66,20 +66,8 @@ void handleIntersectEvent(
     s.intersect(t, intersection);
     intersections.push_back(Intersection(intersection, s, t));
 
-    auto itS = std::find_if(sequence.begin(), sequence.end(), 
-        [s](const Segment& other)
-        {
-            auto start = s.getStart() - other.getStart();
-            auto finish = s.getFinish() - other.getFinish();
-            return start.norm() < 1e-6 && finish.norm() < 1e-6;
-        });
-    auto itT = std::find_if(sequence.begin(), sequence.end(), 
-        [t](const Segment& other)
-        {
-            auto start = t.getStart() - other.getStart();
-            auto finish = t.getFinish() - other.getFinish();
-            return start.norm() < 1e-6 && finish.norm() < 1e-6;
-        });
+    auto itS = std::find(sequence.begin(), sequence.end(), s);
+    auto itT = std::find(sequence.begin(), sequence.end(), t);
 
     std::iter_swap(itS, itT);
 
@@ -94,13 +82,7 @@ void handleFinishEvent(
     SegmentSeq& sequence, 
     IntersectionSeq& intersections)
 {
-    auto it = std::find_if(sequence.begin(), sequence.end(), 
-        [segment](const Segment& other)
-        {
-            auto start = segment.getStart() - other.getStart();
-            auto finish = segment.getFinish() - other.getFinish();
-            return start.norm() < 1e-6 && finish.norm() < 1e-6;
-        });
+    auto it = std::find(sequence.begin(), sequence.end(), segment);
 
     auto prev = *(std::prev(it));
     auto next = *(std::next(it));

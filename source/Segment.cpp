@@ -116,3 +116,15 @@ Eigen::Vector2f Segment::getFinish() const
 {
     return this->finish;
 }
+
+bool operator==(const Segment& a, const Segment& b)
+{
+    auto start = a.getStart() - b.getStart();
+    auto finish = a.getFinish() - b.getFinish();
+    return start.squaredNorm() < 1e-6 && finish.squaredNorm() < 1e-6;
+}
+
+bool operator<(const Segment& a, const Segment& b)
+{
+    return a.getStart()(0) < b.getStart()(0);
+}
