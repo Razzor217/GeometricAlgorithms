@@ -65,6 +65,14 @@ bool Segment::intersect(const Segment& other, Eigen::Vector2f& intersection) con
 
 void Segment::setStart(const Eigen::Vector2f& start)
 {
+    /*
+     * no op if new start value is on same horizontal plane as finish 
+     */
+    if (std::abs(start(1) - this->finish(1)) < 1e-6)
+    {
+        return;
+    }
+
     if (start(1) > this->finish(1))
     {
         this->start = start;
@@ -79,10 +87,6 @@ void Segment::setStart(const Eigen::Vector2f& start)
         this->start = this->finish;
         this->finish = start;
     }
-
-    /*
-     * no op if new start value is on same horizontal plane as finish 
-     */
 }
 
 Eigen::Vector2f Segment::getStart() const
@@ -92,6 +96,14 @@ Eigen::Vector2f Segment::getStart() const
 
 void Segment::setFinish(const Eigen::Vector2f& finish)
 {
+    /*
+     * no op if new finish value is on same horizontal plane as start 
+     */
+    if (std::abs(finish(1) - this->start(1)) < 1e-6)
+    {
+        return;
+    }
+
     if (finish(1) < this->start(1))
     {
         this->finish = finish;
@@ -100,16 +112,12 @@ void Segment::setFinish(const Eigen::Vector2f& finish)
     if (finish(1) > this->start(1))
     {
         /*
-         * replace segment start point and
+         * replace segment finish point and
          * switch start/finish label
          */
         this->finish = this->start;
         this->start = finish;
     }
-
-    /*
-     * no op if new start value is on same horizontal plane as finish 
-     */
 }
 
 Eigen::Vector2f Segment::getFinish() const
