@@ -104,6 +104,13 @@ namespace geometry
          */
         friend bool operator<(const Segment& a, const Segment& b);
 
+    protected:
+        template <typename T>
+        int sgn(const T& x) const
+        {
+            return (x > T(0)) - (x < T(0));
+        }
+
     private:
         Eigen::Vector2f start;
         Eigen::Vector2f finish;

@@ -1,5 +1,7 @@
 #include "Segment.h"
 
+#include <iostream>
+
 using namespace geometry;
 
 Segment::Segment()
@@ -43,18 +45,25 @@ bool Segment::intersect(const Segment& other, Eigen::Vector2f& intersection) con
     float numT = (start(0) - other.getStart()(0)) * (other.getStart()(1) - other.getFinish()(1)) 
                 - (start(1) - other.getStart()(1)) * (other.getStart()(0) - other.getFinish()(0));
     float numU = (start(0) - finish(0)) * (start(1) - other.getStart()(1)) 
-                - (start(1) - finish(1)) * (start(0) - other.getFinish()(0));
-
-    float t = numT / den;
-    float u = numU / den;
+                - (start(1) - finish(1)) * (start(0) - other.getStart()(0));
 
     /*
      * intersection not within segments
      */
-    if (t < 0.f || t > 1.f || u < 0.f || u > 1.f)
+
+    bool tlt = sgn<float>(numT) != sgn<float>(den);
+    bool tgt = std::abs(numT) > std::abs(den);
+    bool ult = sgn<float>(-numU) != sgn<float>(den);
+    bool ugt = std::abs(-numU) > std::abs(den);
+    
+
+    if (tlt || tgt || ult || ugt)
     {
         return false;
     }
+
+    float t = numT / den;
+    float u = -numU / den;
 
     /*
      * first degree Bezier equation
