@@ -3,6 +3,9 @@
 This library provides data structures and algorithms for geometric problems. 
 These include problems such as finding intersections between a set of two-dimensional line segments.
 
+Currently implemented:
+* Plane sweep algorithm (untested)
+
 ## Plane Sweep
 
 Plane Sweep algorithms move a horizontal sweep line from top to bottom 
